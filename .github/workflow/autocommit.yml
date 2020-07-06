@@ -1,0 +1,50 @@
+name: Auto commit
+
+on:
+
+  push:
+    branches:
+      - master
+      
+  schedule:
+  - cron: "0 15,16,17,18,19 * * *"
+
+jobs:
+  auto_commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2      
+        with:
+         persist-credentials: false
+         fetch-depth: 0
+
+      - name: Modify last update
+        run: |
+          d=`date '+%Y-%m-%dT%H:%M:%SZ'`
+          echo $d > LAST_UPDATED TO PUSH AND COMMIT
+          
+      - name: Commit changes
+        run: |
+          git config --local user.email "ary.ardyan@gmail.com"
+          git config --local user.name "ariardian"
+          git add -A
+          
+          arr[0]="feat: 😂 Last Update to edit auto Commit"
+          arr[1]="feat: 😱 Last Update to edit auto Commit"
+          arr[2]="feat: 👿 Last Update to edit auto Commit"
+          arr[3]="feat: 💩 Last Update to edit auto Commit"
+          arr[4]="feat: 🙏 Last Update to edit auto Commit"
+          arr[5]="feat: 🙈 Last Update to edit auto Commit"
+          arr[6]="feat: 🐐 Last Update to edit auto Commit"
+          arr[7]="feat: 🚀 Last Update to edit auto Commit"
+          
+          rand=$[$RANDOM % ${#arr[@]}]
+          
+          git commit -m "${arr[$rand]}"
+          
+      - name: GitHub Push
+        uses: ad-m/github-push-action@v0.5.0
+        with:
+          force: true
+          directory: "."
+          github_token: ${{ secrets.GITHUB_TOKEN }}
