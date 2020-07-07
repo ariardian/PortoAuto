@@ -30,19 +30,17 @@ jobs:
           git add -A
           
           arr[0]="feat: 😂 Last Update to edit auto Commit"
-          arr[1]="feat: 😱 Last Update to edit auto Commit"
-          arr[2]="feat: 👿 Last Update to edit auto Commit"
-          arr[3]="feat: 💩 Last Update to edit auto Commit"
+          arr[1]="feat: 😱 Update with auto commit"
+          arr[2]="feat: 👿 Ah this is my auto"
+          arr[3]="feat: 🙏 Push on github with actions"
           arr[4]="feat: 🙏 Last Update to edit auto Commit"
-          arr[5]="feat: 🙈 Last Update to edit auto Commit"
-          arr[6]="feat: 🐐 Last Update to edit auto Commit"
-          arr[7]="feat: 🚀 Last Update to edit auto Commit"
+          arr[5]="feat: 🙈 Ah this is my commit auto"
+          arr[6]="feat: 🐐 Last Update right"
+          arr[7]="feat: 🚀 Fast dude with auto commit"
           
           rand=$[$RANDOM % ${#arr[@]}]
           
-          git commit -m "Auto Commit test"
-          git push
-          
+          git commit -m "${arr[$rand]}"
       - name: GitHub Push
         uses: ad-m/github-push-action@v0.5.0
         with:
