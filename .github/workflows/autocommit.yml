@@ -1,49 +1,49 @@
-name: Auto commit
+# name: Auto commit
 
-on:
-  pull_request:
-  push:
-    branches:
-      - master
+# on:
+#   pull_request:
+#   push:
+#     branches:
+#       - master
       
-  schedule:
-  - cron: "0 20,21,22 * * *"
+#   schedule:
+#   - cron: "0 20,21,22 * * *"
 
-jobs:
-  auto_commit:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2      
-        with:
-         persist-credentials: false
-         fetch-depth: 0
+# jobs:
+#   auto_commit:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2      
+#         with:
+#          persist-credentials: false
+#          fetch-depth: 0
 
-      - name: Modify last update
-        run: |
-          d=`date '+%Y-%m-%dT%H:%M:%SZ'`
-          echo $d > LAST_UPDATED TO PUSH AND COMMIT
+#       - name: Modify last update
+#         run: |
+#           d=`date '+%Y-%m-%dT%H:%M:%SZ'`
+#           echo $d > LAST_UPDATED TO PUSH AND COMMIT
           
-      - name: Commit changes
-        run: |
-          git config --local user.email "ary.ardyan@gmail.com"
-          git config --local user.name "ariardian"
-          git add -A
+#       - name: Commit changes
+#         run: |
+#           git config --local user.email "ary.ardyan@gmail.com"
+#           git config --local user.name "ariardian"
+#           git add -A
           
-          arr[0]="feat: 😂 Last Update to edit auto Commit"
-          arr[1]="feat: 😱 Update with auto commit"
-          arr[2]="feat: 👿 Ah this is my auto"
-          arr[3]="feat: 🙏 Push on github with actions"
-          arr[4]="feat: 🙏 Last Update to edit auto Commit"
-          arr[5]="feat: 🙈 Ah this is my commit auto"
-          arr[6]="feat: 🐐 Last Update right"
-          arr[7]="feat: 🚀 Fast dude with auto commit"
+#           arr[0]="feat: 😂 Last Update to edit auto Commit"
+#           arr[1]="feat: 😱 Update with auto commit"
+#           arr[2]="feat: 👿 Ah this is my auto"
+#           arr[3]="feat: 🙏 Push on github with actions"
+#           arr[4]="feat: 🙏 Last Update to edit auto Commit"
+#           arr[5]="feat: 🙈 Ah this is my commit auto"
+#           arr[6]="feat: 🐐 Last Update right"
+#           arr[7]="feat: 🚀 Fast dude with auto commit"
           
-          rand=$[$RANDOM % ${#arr[@]}]
+#           rand=$[$RANDOM % ${#arr[@]}]
           
-          git commit -m "${arr[$rand]}"
-      - name: GitHub Push
-        uses: ad-m/github-push-action@v0.5.0
-        with:
-          force: true
-          directory: "."
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+#           git commit -m "${arr[$rand]}"
+#       - name: GitHub Push
+#         uses: ad-m/github-push-action@v0.5.0
+#         with:
+#           force: true
+#           directory: "."
+#           github_token: ${{ secrets.GITHUB_TOKEN }}
